@@ -1,9 +1,6 @@
 package String;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Given two strings A and B of lowercase letters,
@@ -43,21 +40,21 @@ import java.util.Set;
 public class BuddyStrings {
 
     public static void main(String[] args) {
-        String A = "ab";String B = "ba";
-        boolean result = buddyStrings(A, B);
-        System.out.println(result);
-        String C = "ab";String D = "ab";
-        boolean result2 = buddyStrings(C, D);
-        System.out.println(result2);
-        String E = "aa";String F = "aa";
-        boolean result3 = buddyStrings(E, F);
-        System.out.println(result3);
+//        String A = "ab";String B = "ba";
+//        boolean result = buddyStrings(A, B);
+//        System.out.println(result);
+//        String C = "ab";String D = "ab";
+//        boolean result2 = buddyStrings(C, D);
+//        System.out.println(result2);
+//        String E = "aa";String F = "aa";
+//        boolean result3 = buddyStrings(E, F);
+//        System.out.println(result3);
+//
+//        String G = "aaaaaaabc";String H = "aaaaaaacb";
+//        boolean result4 = buddyStrings(G, H);
+//        System.out.println(result4);
 
-        String G = "aaaaaaabc";String H = "aaaaaaacb";
-        boolean result4 = buddyStrings(G, H);
-        System.out.println(result4);
-
-        String I = "";String J = "aa";
+        String I = "abc";String J = "acd";
         boolean result5 = buddyStrings(I, J);
         System.out.println(result5);
 
@@ -80,10 +77,15 @@ public class BuddyStrings {
         }
        //检测A和B中不同位置元素的个数
         int count = 0;
+        List<Character> aList =new ArrayList<>();
         for(int i=0;i<charA.length;i++){
             if(charA[i]!=charB[i]){
+                aList.add(charA[i]);
+                aList.add(charB[i]);
                 count++;
+
             }
+
         }
         if(count==0){
             //每一个位置都相同
@@ -100,9 +102,17 @@ public class BuddyStrings {
                 return false;
             }
         }
-        if(count!=2){
-            return false;
+        /**
+         * ab bc
+         * abc acd
+         * acbd abbe
+         */
+        if(count==2){
+           //判断是否B中的元素是否A中也拥有
+            if(aList.get(0)==aList.get(3)&&aList.get(1)==aList.get(2)){
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 }
