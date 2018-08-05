@@ -29,6 +29,9 @@ public class ToLowerCase {
         String reverseStr = toLoawCase(LOVELY);
         System.out.println(reverseStr);
 
+        String aCase = LOVELY.toLowerCase();
+        System.out.println(aCase);
+
     }
 
     public static String toLoawCase(String str){
