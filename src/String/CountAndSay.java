@@ -24,44 +24,56 @@ package String;
  * Input: 4
  * Output: "1211"
  *
- * in n=1 out 11  -->1个1
- * in n=2 out 21  --->两个1
- * in n=3 out 1211 ---->1个2 1个1
+ * in n=1 out 1  -->1个1
+ * in n=2 out 11  --->两个1
+ * in n=3 out 21 ---->1个2 1个1
  * in n=4 out 111221 ----> 1个1 1个2 2个1
  * In n=5 out 312211 ---> 13112221
  */
 public class CountAndSay {
     public static void main(String[] args) {
-        String s = countAndSay("111221");
+        String s = countAndSay(2);
         System.out.println(s);
     }
-    public static String countAndSay(String str) {
+    public static String countAndSay(int n) {
+        String str="";
+        if(n==1){
+            str= "1";
+            return str;
+        }else{
+            str=countAndSay(n-1);
+        }
         String result ="";
         char[] chars = str.toCharArray();
         int count =1;
         //1 1 1 2 2 1
-        for(int i=1;i<chars.length;i++){
-            //当前元素和前一个元素相同 count++ 不相同 记录下来
-            int index = i-1;
-            if(chars[i]==chars[index]){
-                count=count+1;
-                //最后了
-                if(i==chars.length-1){
-                    result+=count+chars[i];
+        if(chars.length==1){
+            result="11";
+        }else {
+            for(int i=1;i<chars.length;i++){
+                //当前元素和前一个元素相同 count++ 不相同 记录下来
+                int index = i-1;
+                if(chars[i]==chars[index]){
+                    count=count+1;
+                    //最后了
+                    if(i==chars.length-1){
+                        result+=count+""+chars[i];
+                    }else{
+                        continue;
+                    }
                 }else{
+                    int index2 = i-1;
+                    result+=count+""+chars[index2];
+                    count=1;
+                    //如果是最后一个
+                    if(i==chars.length-1) {
+                        result += count +""+ chars[i];
+                    }
                     continue;
                 }
-            }else{
-                int index2 = i-1;
-                result+=count+""+chars[index2];
-                count=1;
-                //如果是最后一个
-                if(i==chars.length-1) {
-                    result += count + chars[i];
-                }
-                continue;
             }
         }
+
         return result;
     }
 }
