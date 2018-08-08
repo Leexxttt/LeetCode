@@ -20,7 +20,7 @@ public class CountWordsNum {
             return 0;
         }
         for(int i=3;i<chars.length;i++){
-            String result = new Character(chars[i-3]).toString() + new Character(chars[i-2]).toString() + new Character(chars[i-1]).toString() + new Character(chars[i]).toString();
+            String result = String.valueOf(chars[i-3]) +  String.valueOf(chars[i-2]) +  String.valueOf(chars[i-1]) +  String.valueOf(chars[i]);
             if("fail".equals(result)){
                 count++;
             }
