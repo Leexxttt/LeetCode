@@ -24,22 +24,30 @@ import java.util.List;
 
 public class TwoSum {
     public static void main(String[] args) {
-        int[] targetArray = new int[]{2, 7, 11, 15};
-        twoSum(targetArray,9);
+        int[] targetArray = new int[]{3, 2,4 };
+        System.out.println(twoSum(targetArray,6).toString());
     }
 
     public static int[] twoSum(int[] nums, int target) {
+        int[] returnArray = new int[2];
         List<Integer> list = new ArrayList<>();
         for(int i=0;i<nums.length;i++){
             //获取他们和目标值的差值
             list.add(target-nums[i]);
         }
+        boolean flag=false;
        for(int i=0;i<list.size();i++){
-            if((list.get(i)+list.get(i+1))==9){
-
+           if(flag) break;
+            for(int j=i+1;j<list.size();j++){
+                if((list.get(i)+list.get(j))==target){
+                    returnArray[0]=i;
+                    returnArray[1]=j;
+                    flag=true;
+                    break;
+                }
             }
        }
 
-        return null;
+        return returnArray;
     }
 }
