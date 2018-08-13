@@ -1,6 +1,8 @@
 package String;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,11 +27,17 @@ import java.util.Map;
  */
 public class LongestCommonPrefix {
     public static void main(String[] args) {
-        String[] strs = new String[]{"flower","flow","flight"};
+        String[] strs = new String[]{"aa","a"};
         longestCommonPrefix(strs);
     }
 
     public static String longestCommonPrefix(String[] strs) {
+        if(strs.length==1){
+            return strs[0];
+        }
+        if(strs.length==0){
+            return "";
+        }
         //获取最小的长度 首相相同前缀的长度不可能大于最小的长度
         int minLength = 0;
         for(int i=0;i<strs.length;i++){
@@ -42,6 +50,12 @@ public class LongestCommonPrefix {
             }
         }
         // a b c d  a和b的公共前缀
+        /**
+         * a 和 b的公共前缀 flow
+         * b 和 c的公共前缀 fl
+         *
+         */
+        String result=strs[0].substring(0,minLength);
         for(int i=0;i<minLength;i++){//这层循环是最多的common prefix
             for(int j=0;j<strs.length-1;j++){
                 //获取这个当前单词和下一个单词相同字母
@@ -49,13 +63,13 @@ public class LongestCommonPrefix {
                 String str2 = strs[j+1];
                 if(str1.charAt(i)!=str2.charAt(i)){
                     //截取到这一步他们相同的长度
-                    return str1.substring(0,i);
+                    if(str1.substring(0,i).length()<result.length()){
+                        result=str1.substring(0,i);
+                    }
                 }
             }
-
         }
-
-        return strs[0].substring(0,minLength);
+        return result;
     }
 
 }
